@@ -18,6 +18,11 @@ jobs:
     - image: circleci/node:13.8.0
     steps:
     - run: echo "world"
+  print_env_variable:
+    docker: 
+    - image: circleci/node:13.8.0
+    steps:
+    - run: echo $SANDBOX_TEST_ENV
 
 workflows:
   # Name the workflow "welcome"
@@ -31,3 +36,6 @@ workflows:
       - print_world:
           requires:
             - print_hello
+      - print_env_variable:
+          requires:
+          - print_world
